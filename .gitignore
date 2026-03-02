@@ -1,0 +1,82 @@
+# ── Claude Code local settings ──────────────────────────────────────────────────
+.claude/
+
+# ── Dataset downloads (large files / embedded repos) ────────────────────────────
+backend/dataset/downloads/
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# ── Audio files only (dataset files, not directories) ──────────────────────────
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.m4a
+*.aac
+*.opus
+*.weba
+*.webm
+
+# ── Python ──────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.so
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ── ML / model artefacts ────────────────────────────────────────────────────────
+*.joblib
+*.pkl
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.onnx
+*.safetensors
+
+# ── Node / Frontend ─────────────────────────────────────────────────────────────
+node_modules/
+dist/
+.cache/
+.parcel-cache/
+
+# ── OS ──────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE ─────────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Env / secrets ───────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── Logs ────────────────────────────────────────────────────────────────────────
+*.log
+logs/

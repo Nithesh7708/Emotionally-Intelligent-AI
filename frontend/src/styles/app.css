@@ -1,0 +1,554 @@
+/* ─── Layout ─────────────────────────────────────────── */
+.vaScreen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse 800px 600px at 60% -10%, #0f1f55 0%, transparent 65%),
+    radial-gradient(ellipse 600px 400px at -10% 80%, #10124a 0%, transparent 60%),
+    #070d1a;
+}
+
+/* ─── Top bar ─────────────────────────────────────────── */
+.vaTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.vaLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vaLogoIcon { font-size: 20px; }
+
+.vaLogoText {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.vaSettingsBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms, color 150ms;
+}
+
+.vaSettingsBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ─── Settings panel ──────────────────────────────────── */
+.vaSettings {
+  align-self: flex-end;
+  width: 440px;
+  margin: 10px 28px 0 auto;
+  padding: 18px 22px;
+  background: rgba(8, 14, 34, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: slideDown 0.2s ease;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.vaSettingsTitle {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.vaSettingsRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.vaSettingsLabel {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  min-width: 56px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.vaSettingsVal {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.vaSelect {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.88);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+}
+
+.vaSelect:focus { border-color: rgba(99, 102, 241, 0.55); }
+
+.vaRange {
+  flex: 1;
+  accent-color: #6366f1;
+  cursor: pointer;
+}
+
+/* ─── Test voice button ───────────────────────────────── */
+.vaTestBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 0;
+  border-radius: 9px;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  background: rgba(99, 102, 241, 0.12);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 150ms, border-color 150ms;
+}
+
+.vaTestBtn:hover {
+  background: rgba(99, 102, 241, 0.24);
+  border-color: rgba(99, 102, 241, 0.55);
+}
+
+/* ─── Stage ───────────────────────────────────────────── */
+.vaStage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 36px 24px 52px;
+}
+
+/* ─── Emotion Block ───────────────────────────────────── */
+.vaEmotionBlock {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 60px 20px;
+  min-width: 220px;
+}
+
+/* Ambient glow */
+.vaEmoGlow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--ec) 30%, transparent) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -58%);
+  pointer-events: none;
+  z-index: 0;
+  transition: background 600ms ease;
+}
+
+/* Main emoji */
+.vaEmoIcon {
+  font-size: 76px;
+  line-height: 1;
+  display: block;
+  position: relative;
+  z-index: 1;
+  will-change: transform;
+  filter: drop-shadow(0 0 22px color-mix(in srgb, var(--ec) 50%, transparent));
+  transition: filter 600ms ease;
+}
+
+/* Label */
+.vaEmoLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--ec);
+  position: relative;
+  z-index: 1;
+  transition: color 600ms ease;
+}
+
+/* ── Per-emotion emoji animations */
+.emo--happy  .vaEmoIcon { animation: emoBounce 0.65s ease-in-out infinite; }
+.emo--sad    .vaEmoIcon { animation: emoSway   2.6s  ease-in-out infinite; }
+.emo--angry  .vaEmoIcon { animation: emoShake  0.35s ease-in-out infinite; }
+.emo--fear   .vaEmoIcon { animation: emoShiver 0.22s ease-in-out infinite; }
+.emo--neutral .vaEmoIcon { animation: emoFloat 3.6s  ease-in-out infinite; }
+
+@keyframes emoBounce {
+  0%, 100% { transform: translateY(0)    rotate(0deg)  scale(1);    }
+  30%       { transform: translateY(-22px) rotate(-7deg) scale(1.13); }
+  60%       { transform: translateY(-9px)  rotate(5deg)  scale(1.07); }
+  80%       { transform: translateY(-15px) rotate(-2deg) scale(1.1);  }
+}
+
+@keyframes emoSway {
+  0%, 100% { transform: rotate(-4deg) translateY(0)   opacity: 1;    }
+  25%       { transform: rotate(4deg)  translateY(6px); opacity: 0.85; }
+  50%       { transform: rotate(-3deg) translateY(2px); opacity: 1;   }
+  75%       { transform: rotate(3deg)  translateY(7px); opacity: 0.9; }
+}
+
+@keyframes emoShake {
+  0%, 100% { transform: translateX(0)   rotate(0deg);  }
+  20%       { transform: translateX(-8px) rotate(-5deg); }
+  40%       { transform: translateX(8px)  rotate(5deg);  }
+  60%       { transform: translateX(-5px) rotate(-3deg); }
+  80%       { transform: translateX(5px)  rotate(3deg);  }
+}
+
+@keyframes emoShiver {
+  0%, 100% { transform: translate(0, 0)     scale(1);    }
+  15%       { transform: translate(-3px,-2px) scale(0.97); }
+  30%       { transform: translate(3px, 1px)  scale(1.02); }
+  45%       { transform: translate(-2px,-3px) scale(0.98); }
+  60%       { transform: translate(2px, 2px)  scale(1.01); }
+  75%       { transform: translate(-3px, 0)   scale(0.99); }
+}
+
+@keyframes emoFloat {
+  0%, 100% { transform: translateY(0)   scale(1);    }
+  50%       { transform: translateY(-13px) scale(1.04); }
+}
+
+/* ── Particle base */
+.emoP {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Happy sparkles */
+.emoSpark {
+  font-size: 17px;
+  color: #fde68a;
+  animation: sparkTwinkle 1.4s ease-in-out infinite;
+}
+.es1 { top: 8px;    left: 12px;           animation-delay: 0s;    }
+.es2 { top: 2px;    right: 16px;          animation-delay: 0.28s; }
+.es3 { top: 46px;   left: 0px;            animation-delay: 0.56s; }
+.es4 { top: 42px;   right: 2px;           animation-delay: 0.84s; }
+.es5 { bottom: 16px; left: 50%; margin-left: -9px; animation-delay: 1.12s; }
+
+@keyframes sparkTwinkle {
+  0%, 100% { opacity: 0;   transform: scale(0.3) rotate(0deg);   }
+  50%       { opacity: 1;   transform: scale(1.4) rotate(180deg); }
+}
+
+/* ── Sad tears */
+.emoTear {
+  width: 7px;
+  height: 13px;
+  border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+  background: #60a5fa;
+  top: 62px;
+  opacity: 0;
+  animation: tearDrop 2.2s ease-in infinite;
+}
+.et1 { left: 36%; animation-delay: 0s;    }
+.et2 { left: 55%; animation-delay: 0.95s; }
+.et3 { left: 46%; animation-delay: 1.75s; }
+
+@keyframes tearDrop {
+  0%   { opacity: 0;   transform: translateY(0)    scaleX(1);   }
+  15%  { opacity: 0.9;                                           }
+  80%  { opacity: 0.4;                                           }
+  100% { opacity: 0;   transform: translateY(54px) scaleX(0.7); }
+}
+
+/* ── Angry flames */
+.emoFlame {
+  font-size: 22px;
+  bottom: 10px;
+  animation: flameRise 0.75s ease-out infinite;
+}
+.ef1 { left: 16%;  animation-delay: 0s;    }
+.ef2 { left: 44%;  animation-delay: 0.25s; }
+.ef3 { right: 16%; animation-delay: 0.5s;  }
+
+@keyframes flameRise {
+  0%   { opacity: 0.9; transform: translateY(0)    scale(1)   rotate(-4deg); }
+  100% { opacity: 0;   transform: translateY(-30px) scale(0.3) rotate(6deg);  }
+}
+
+/* ── Fear pulse dots */
+.emoPulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ec);
+  animation: fearPulse 0.65s ease-out infinite;
+}
+.ep1 { top: 6px;    left: 50%; margin-left: -5px;  animation-delay: 0s;    }
+.ep2 { bottom: 12px; left: 50%; margin-left: -5px; animation-delay: 0.16s; }
+.ep3 { top: 50px;   left: 8px;                      animation-delay: 0.32s; }
+.ep4 { top: 50px;   right: 8px;                     animation-delay: 0.48s; }
+
+@keyframes fearPulse {
+  0%   { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 0;   transform: scale(3.5); }
+}
+
+/* ── Fear lightning */
+.emoZap {
+  font-size: 19px;
+  animation: zapFlash 0.44s ease-in-out infinite;
+}
+.ez1 { top: 12px; left:  -6px; animation-delay: 0s;    }
+.ez2 { top: 12px; right: -6px; animation-delay: 0.22s; }
+
+@keyframes zapFlash {
+  0%, 100% { opacity: 0; transform: scale(0.7); }
+  50%       { opacity: 1; transform: scale(1.15); }
+}
+
+/* ── Neutral orbit */
+.emoOrbitRing {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -58%);
+  animation: orbitSpin 5s linear infinite;
+}
+.emoOrbitDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ec);
+  opacity: 0.6;
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  margin-left: -4px;
+  box-shadow: 0 0 8px var(--ec);
+}
+@keyframes orbitSpin {
+  from { transform: translate(-50%, -58%) rotate(0deg);   }
+  to   { transform: translate(-50%, -58%) rotate(360deg); }
+}
+
+/* ─── Live transcript ─────────────────────────────────── */
+.vaTranscript {
+  max-width: 400px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ─── Orb ─────────────────────────────────────────────── */
+.vaOrbArea {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+}
+
+/* Ripple rings */
+.vaRing {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.vaRing1 { width: 140px; height: 140px; animation: ring 2s ease-out infinite; }
+.vaRing2 { width: 160px; height: 160px; animation: ring 2s ease-out infinite 0.65s; }
+
+/* Slower, softer rings for AI speaking */
+.vaRing--ai { animation-duration: 2.6s; }
+
+@keyframes ring {
+  0%   { opacity: 0.45; transform: scale(0.88); }
+  100% { opacity: 0;    transform: scale(1.3);  }
+}
+
+.vaOrb {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.92);
+  background: radial-gradient(circle at 38% 38%, #1c2a5e 0%, #0b1230 100%);
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+  transition: transform 150ms ease, box-shadow 450ms ease;
+}
+
+.vaOrb:hover:not(:disabled) {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.14), 0 12px 40px rgba(0,0,0,0.55);
+}
+
+.vaOrb--recording {
+  box-shadow:
+    0 0 0 2.5px var(--ec),
+    0 0 50px color-mix(in srgb, var(--ec) 35%, transparent),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: orbPulse 2s ease-in-out infinite;
+}
+
+.vaOrb--speaking {
+  box-shadow:
+    0 0 0 2px var(--ec),
+    0 0 38px color-mix(in srgb, var(--ec) 25%, transparent),
+    0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: orbBreath 2.6s ease-in-out infinite;
+}
+
+.vaOrb--loading { opacity: 0.65; cursor: not-allowed; }
+.vaOrb:disabled { cursor: not-allowed; }
+
+@keyframes orbPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+@keyframes orbBreath {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.025); }
+}
+
+.vaSpinner { animation: spin 1s linear infinite; }
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Waveform zone (shared space for mic + AI wave) ──── */
+.vaWaveZone {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vaWaveRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 64px;
+}
+
+/* Mic bars — real-time */
+.vaBar {
+  width: 4px;
+  border-radius: 999px;
+  min-height: 3px;
+  transition: height 55ms ease-out;
+}
+
+/* AI bars — CSS animated */
+.vaAiBar {
+  width: 4px;
+  border-radius: 999px;
+  height: 3px;
+  animation: aiBarAnim var(--dur, 0.8s) ease-in-out infinite var(--delay, 0s);
+  opacity: 0.75;
+}
+
+@keyframes aiBarAnim {
+  0%, 100% { height: 3px; }
+  50%       { height: var(--peak, 20px); }
+}
+
+/* ─── Status text ─────────────────────────────────────── */
+.vaStatus {
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+
+/* ─── AI response text — compact strip ───────────────── */
+.vaAiText {
+  max-width: 460px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.65);
+  padding: 10px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  animation: fadeUp 0.35s ease;
+
+  /* clamp to ~3 lines with fade-out */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Error ───────────────────────────────────────────── */
+.vaError {
+  max-width: 400px;
+  text-align: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.1);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ─── Hint ────────────────────────────────────────────── */
+.vaHint {
+  font-size: 12px;
+  color: var(--muted);
+  opacity: 0.65;
+}

@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+librosa
+soundfile
+numpy
+scikit-learn
+joblib
+python-multipart
+pydantic
+torch
+torchvision
+torchaudio
+tqdm
+matplotlib
