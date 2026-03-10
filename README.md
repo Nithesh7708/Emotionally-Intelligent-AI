@@ -108,6 +108,19 @@ Open **http://localhost:5173** in your browser.
 
 ---
 
+## Run Backend + Frontend (single command)
+
+From the repo root (after installing backend + frontend dependencies as above):
+
+```bash
+python dev.py
+```
+
+If your backend dependencies are installed into a virtualenv, `dev.py` will auto-use:
+`backend/.venv` → `.venv` → `venv` (first one found).
+
+---
+
 ## Train the Emotion Model
 
 The backend ships with a fallback to `neutral` when no model file is present. To train a real model:
@@ -236,6 +249,7 @@ Accepts an audio recording and returns the detected emotion with an empathetic r
 
 | Problem | Fix |
 |---------|-----|
+| `ModuleNotFoundError: No module named 'app'` | Run from `backend/` (`cd backend && uvicorn app.main:app --reload`) or from repo root use `python -m uvicorn app.main:app --app-dir backend --reload` (or `python dev.py`) |
 | `ModuleNotFoundError` on backend start | Activate your virtual environment and run `pip install -r requirements.txt` |
 | Emotion always returns `neutral` | No trained model found — train one with `python train_model.py` |
 | Mic button does nothing | Browser needs microphone permission; check the address bar padlock |
